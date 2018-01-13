@@ -22,7 +22,7 @@ This page contains
 A script to rate the competency of a resume in PDF format by comparing it to a company's requirements mentioned on its website.:
 
 ### Dependencies
-* Slate : `easy_install slate`
+* Slate : `sudo easy_install slate`
 * BeautifulSoup : `pip install beautifulsoup`
 * Requests : `pip install requests`
 
