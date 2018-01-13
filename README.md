@@ -30,6 +30,8 @@ A script to rate the competency of a resume in PDF format by comparing it to a c
 * You will need Python (version 2.7 has been tested).
 * Install dependencies
 * Clone all the sources from our Github repository.
+* Go <a href="http://www.cortical.io/resources_apikey.html">here</a>, register for free API key.
+* Copy the key received in the mail and paste it in config.py
 
 
 ### How to run
