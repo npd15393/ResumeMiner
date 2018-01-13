@@ -32,7 +32,7 @@ A script to rate the competency of a resume in PDF format by comparing it to a c
 * Clone all the sources from our Github repository.
 
 
-Y### How to run
+### How to run
 * Rename your resume to 'resume.pdf' and copy-replace the 'resume.pdf' file it in the cloned repo directory. 
 * In terminal, navigate to source
 * `python Ex1.py`
