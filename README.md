@@ -22,9 +22,12 @@ This page contains
 A script to rate the competency of a resume in PDF format by comparing it to a company's requirements mentioned on its website.:
 
 ### Dependencies
+* Setuptools: `sudo apt-get install python-setuptools`
 * Slate : `sudo easy_install slate`
 * BeautifulSoup : `pip install beautifulsoup4`
 * Requests : `pip install requests`
+* Grammar Check engine : `pip install --user --upgrade grammar-check`
+
 
 ### How to use/build
 * You will need Python (version 2.7 has been tested).
