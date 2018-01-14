@@ -7,9 +7,9 @@ import json
 import pprint
 from collator import Collator 
 
-TARGET_COMPANY_URL="https://www.mathworks.com/company/jobs/opportunities/"
+TARGET_COMPANY_URL="https://www.mathworks.com/company/jobs/opportunities/18152-reinforcement-learning-summer-intern"
 testing_slate=False
-testing_soup=True
+testing_soup=False
 
 def PDF2txt(pth):
 	with open(pth) as f:
@@ -35,24 +35,24 @@ if __name__=='__main__':
 
 	api=TextApi(client)
 	scpr=scraper()
-
+	kwords=[]
+	tokens=[]
 	targettxt=url2txt(scpr,TARGET_COMPANY_URL)
 	candidatetxts=PDF2txt("resume.pdf")
-
-	kwords=[getkw(candidatetxts[i]) for i in range(len(candidatetxts))] 
-	tokens=[gettokens(candidatetxts[i]) for i in range(len(candidatetxts))]
-	slices=[getslices(candidatetxts[i]) for i in range(len(candidatetxts))]
+	for i in range(len(candidatetxts)):
+		kwords+=getkw(candidatetxts[i]) 
+		tokens+=gettokens(candidatetxts[i])
+	print("Keywords extracted, Tokens ready")
+	#slices=[getslices(candidatetxts[i]) for i in range(len(candidatetxts))]
 
 	if testing_slate:
-		for t in kwords:
-			pprint.pprint(t)
-
-		for t in tokens:
-			pprint.pprint(t)
+		print([str(r) for r in kwords])
+		print([str(r) for r in tokens])
 
 	if testing_soup:
-		print(targettxt)
+		print(str(targettxt))
 
-	#cp=Collator()
+	cp=Collator(candidatetxts[0],targettxt,kwords,tokens)
 
-	#print(str(cp.collate()*10)+' is the resume competency rating out of 10'
+
+	print(str(cp.collate()*10)+' is the resume competency rating out of 10')

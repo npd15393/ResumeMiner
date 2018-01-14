@@ -23,6 +23,7 @@ A script to rate the competency of a resume in PDF format by comparing it to a c
 
 ### Dependencies
 * Setuptools: `sudo apt-get install python-setuptools`
+* Sklearn : `pip install sklearn`
 * Slate : `sudo easy_install slate`
 * BeautifulSoup : `pip install beautifulsoup4`
 * Requests : `pip install requests`

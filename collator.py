@@ -1,31 +1,45 @@
 import grammar_check
+from sklearn.feature_extraction.text import TfidfVectorizer
+import numpy as np
 
 class Collator:
-	def __init__(self,RFullText,WFullText,kw1,t1,kw2=[],t2=[]):
-		self.rkeywords=[r for r in kw1]
-		self.rtokens=[r for r in t1]
-		self.RTexts=[r for r in RFullText]
-		self.WTexts=[r for r in WFullText]
-		if len(t2)>0 and len(kw2)>0:
-			self.wkeywords=[r for r in kw2]
-			self.wtoken=[r for r in t2]
+	def __init__(self,RFullText,WFullText,kw1,t1):
+		self.rkeywords=[str(r) for r in kw1]
+		self.rtokens=[str(r) for r in t1]
+		self.RTexts=RFullText
+		filter(lambda a: a != ' ', WFullText)
+		self.WTexts=WFullText
+		print("Indexing ready")
 
 
 	def kwMatch_test(self):
-		pass
+		score=0
+
+		for kws in self.rkeywords:
+			for o in self.WTexts:
+				if kws == o:
+					score+=1
+					break
+		frac=float(score)#/float(len(self.rkeywords))
+		return frac
 
 	def TokenSimilarity_test(self):
-		pass#cs
+		vect = TfidfVectorizer(min_df=1)
+		wt=' '.join(self.WTexts)
+		tfidf = vect.fit_transform([wt,self.RTexts])
+		arr=(tfidf * tfidf.T).A
+		print(arr)
+		return np.sqrt(1-np.linalg.det(arr))
 
 	def Grammar_test(self):
 		errors=0
 		tool = grammar_check.LanguageTool('en-GB')
-		totl=get_prone_no(self.RTexts)
-		for ts in self.RTexts:
+		totl=self.get_prone_no(self.rtokens)
+		for ts in self.rtokens:
 			text = ts
 			matches = tool.check(text)
 			errors+=len(matches)
-		return 1-errors/totl
+		return errors/totl
 
 
 	def get_prone_no(self,txts):
@@ -38,8 +52,12 @@ class Collator:
 	def getNGrams(self,wordlist, n):
 		return [wordlist[i:i+n] for i in range(len(wordlist)-(n-1))]
 
+	def sigmoid(self,n):
+		return np.exp(n)/(1+np.exp(n))
+
 	def collate(self):
-		test1_score=kwMatch_test()
-		test2_score=TokenSimilarity_test()
-		test3_score=Grammar_test()
-		return 0.3*test1_score+0.3*test2_score+0.4*test3_score
+		test1_score=self.kwMatch_test()
+		test2_score=self.TokenSimilarity_test()
+		test3_score=self.Grammar_test()
+		
+		return max(0.6*self.sigmoid(test1_score)+0.4*test2_score-0.5*test3_score,0)

@@ -10,5 +10,5 @@ class url_scraper:
 		url=requests.get(ur)	
 		soup = bs(url.content,"lxml")
 		x = str(soup.find_all('p'))
-		page = str(re.sub("<.*?>", "", x))
-		return page
+		page = re.sub("<.*?>", "", x)
+		return page.split()
