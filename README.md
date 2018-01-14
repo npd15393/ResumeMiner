@@ -1,14 +1,10 @@
 # Resume Miner
 
-A script to rate a Resume for a given company.
+## Overview
 
+Welcome to Resume Miner source code page. This is a script to rate a Resume for a given company.
 
-
-## cortical.io
-
-Welcome to Resume Miner source code page.
-
-Release Version: 0.2
+Release Version: 0.3
 
 This page contains
 <UL>
@@ -19,7 +15,7 @@ This page contains
 
 
 ### Introduction
-A script to rate the competency of a resume in PDF format by comparing it to a company's requirements mentioned on its website.:
+A script to rate the competency of a resume in PDF format by comparing it to a company's requirements mentioned on its website. It uses various criteria like keyword matching, tf-idf and Grammer checking to provide an overall rating of the resume considering the company's expectations and requirements.
 
 ### Dependencies
 * Setuptools: `sudo apt-get install python-setuptools`
@@ -28,7 +24,7 @@ A script to rate the competency of a resume in PDF format by comparing it to a c
 * BeautifulSoup : `pip install beautifulsoup4`
 * Requests : `pip install requests`
 * Grammar Check engine : `pip install --user --upgrade grammar-check`
-
+* An active internet connection
 
 ### How to use/build
 * You will need Python (version 2.7 has been tested).
@@ -40,5 +36,6 @@ A script to rate the competency of a resume in PDF format by comparing it to a c
 
 ### How to run
 * Rename your resume to 'resume.pdf' and copy-replace the 'resume.pdf' file it in the cloned repo directory. 
-* In terminal, navigate to source
-* `python Ex1.py`
+* Open Ex1.py in any editor and paste-replace the company website's url in TARGET_COMPANY_URL
+* In terminal, navigate to source directory
+* Execute `python Ex1.py`
