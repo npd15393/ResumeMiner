@@ -4,8 +4,8 @@ import numpy as np
 
 class Collator:
 	def __init__(self,RFullText,WFullText,kw1,t1):
-		self.rkeywords=[str(r) for r in kw1]
-		self.rtokens=[str(r) for r in t1]
+		self.rkeywords=[r.encode('utf-8') for r in kw1]
+		self.rtokens=[r.encode('utf-8') for r in t1]
 		self.RTexts=RFullText
 		filter(lambda a: a != ' ', WFullText)
 		self.WTexts=WFullText
@@ -28,7 +28,6 @@ class Collator:
 		wt=' '.join(self.WTexts)
 		tfidf = vect.fit_transform([wt,self.RTexts])
 		arr=(tfidf * tfidf.T).A
-		print(arr)
 		return np.sqrt(1-np.linalg.det(arr))
 
 	def Grammar_test(self):
@@ -58,6 +57,6 @@ class Collator:
 	def collate(self):
 		test1_score=self.kwMatch_test()
 		test2_score=self.TokenSimilarity_test()
-		test3_score=self.Grammar_test()
-		
-		return max(0.6*self.sigmoid(test1_score)+0.4*test2_score-0.5*test3_score,0)
+		#test3_score=self.Grammar_test()
+
+		return max(0.4*self.sigmoid(test1_score)+0.6*test2_score,0)#-0.5*test3_score,0)
