@@ -42,12 +42,13 @@ if __name__=='__main__':
 	for i in range(len(candidatetxts)):
 		kwords+=getkw(candidatetxts[i]) 
 		tokens+=gettokens(candidatetxts[i])
+
 	print("Keywords extracted, Tokens ready")
 	#slices=[getslices(candidatetxts[i]) for i in range(len(candidatetxts))]
 
 	if testing_slate:
-		print([str(r) for r in kwords])
-		print([str(r) for r in tokens])
+		print([r.encode('utf-8') for r in kwords])
+		print([r.encode('utf-8') for r in tokens])
 
 	if testing_soup:
 		print(str(targettxt))
