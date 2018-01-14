@@ -1,8 +1,8 @@
-# Resume Miner
+# Resume Reviewer
 
 ## Overview
 
-Welcome to Resume Miner source code page. This is a script to rate a Resume for a given company.
+Welcome to Resume Reviewer source code page. This is a script to rate a Resume for a given company.
 
 Release Version: 0.3
 
