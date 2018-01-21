@@ -10,6 +10,7 @@ This page contains
 <UL>
 <LI><B>Introduction</B></LI>
 <LI><B>Dependencies</B></LI>
+<LI><B>How to set things up</B></LI>
 <LI><B>How to run</B></LI>
 
 
@@ -26,7 +27,7 @@ A script to rate the competency of a resume in PDF format by comparing it to a c
 * Grammar Check engine : `pip install --user --upgrade grammar-check`
 * An active internet connection
 
-### How to use/build
+### How to set things up
 * You will need Python (version 2.7 has been tested).
 * Install dependencies
 * Clone all the sources from our Github repository.
